@@ -10,8 +10,13 @@
 
 int main(int ac, char **av)
 {
+    if (ac != 2) {
+        std::cerr << "Invalid number of arguments" << std::endl;
+        return (84);
+    }
+    std::string path = av[1];
     try {
-        Core arcade(ac, av);
+        Core arcade(path);
     } catch (std::exception()) {
         return 84;
     }

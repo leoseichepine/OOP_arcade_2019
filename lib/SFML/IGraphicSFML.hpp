@@ -9,13 +9,15 @@
 #define SFML_HPP_
 
 #include <iostream>
+#include "./../../include/IGraphic.hpp"
 #include "SFML/Graphics.hpp"
-#include "./../include/IGraphic.hpp"
 
-class SFML: public IGraphic {
+extern "C" IGraphic *entry();
+
+class IGraphicSFML: public IGraphic {
     public:
-        SFML();
-        ~SFML();
+        IGraphicSFML();
+        ~IGraphicSFML();
 
         virtual void drawScreen() override;
         virtual void clearScreen() override;

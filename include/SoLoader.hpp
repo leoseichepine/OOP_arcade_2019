@@ -9,6 +9,7 @@
 #define SOLOADER_HPP_
 
 #include "dlfcn.h"
+#include <iostream>
 
 template <typename T>
 class SoLoader {
@@ -16,8 +17,9 @@ class SoLoader {
         SoLoader(const std::string &filename)
         {
             this->_lib = dlopen(filename.c_str(), RTLD_LAZY);
-            if (this->_lib == nullptr)
+            if (this->_lib == nullptr) {
                 throw std::exception();
+            }
             T *(*func)() = reinterpret_cast<T *(*)()>(dlsym(this->_lib, "entry"));
             if (func == nullptr)
                 throw std::exception();

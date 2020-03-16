@@ -2,19 +2,21 @@
 ** EPITECH PROJECT, 2020
 ** OOP_arcade_2019
 ** File description:
-** Pacman
+** Nibbler
 */
 
-#ifndef PACMAN_HPP_
-#define PACMAN_HPP_
+#ifndef NIBBLER_HPP_
+#define NIBBLER_HPP_
 
 #include "./../include/IGame.hpp"
 #include <iostream>
 
-class Pacman: public IGame {
+extern "C" IGame *entry();
+
+class Nibbler: public IGame {
     public:
-        Pacman();
-        ~Pacman();
+        Nibbler();
+        ~Nibbler();
 
         virtual void handleEvent(std::string &name) override;
         virtual void handleUpdate(int elapsedTime) override;
@@ -25,4 +27,4 @@ class Pacman: public IGame {
     private:
 };
 
-#endif /* !PACMAN_HPP_ */
+#endif /* !NIBBLER_HPP_ */

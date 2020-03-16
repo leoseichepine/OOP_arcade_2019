@@ -35,6 +35,7 @@ class IGraphicRenderer
 class IGraphic: public IGraphicRenderer {
     public:
         IGraphic() = default;
+
         virtual bool isOperational() = 0;
         virtual IEventIterator& handleEvents() = 0;
 };

@@ -9,11 +9,13 @@ CORE_MAIN					=	./src/main.cpp
 
 CORE_NAME					=	arcade
 
-CORE_SRC					=	./src/Core.cpp
+CORE_SRC					=	./src/Core.cpp			\
 
 CC							=	g++
 
-CFLAGS						=	-Wall -Wextra -ldl
+CFLAGS						=	-Wall -Wextra -ldl -g
+
+SFML_FLAGS					=	-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 OBJ							=	$(SRC:.cpp=.o)
 OBJ_MAIN					=	$(CORE_MAIN:.cpp=.o)
@@ -24,7 +26,7 @@ $(NAME):	$(OBJ) $(OBJ_MAIN)
 all:		core
 
 core:
-			$(CC) -o $(CORE_NAME) $(CORE_SRC) $(CORE_MAIN) $(CFLAGS) -g
+			$(CC) -o $(CORE_NAME) $(CORE_SRC) $(CORE_MAIN) $(CFLAGS) $(SFML_FLAGS)
 
 debug:
 			$(CC) -o $(NAME) $(SRC) $(MAIN_FILE) $(CFLAGS) -g

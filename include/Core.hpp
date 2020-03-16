@@ -18,11 +18,11 @@
 #include <vector>
 
 #define GRAPHIC_PATH "./lib/"
-#define GAME_PATH "./game/"
+#define GAME_PATH "./games/"
 
 class Core {
     public:
-        explicit Core(int ac, char **av);
+        explicit Core(const std::string &);
         ~Core();
 
         void useGraphic(const std::string &filename);
@@ -30,10 +30,11 @@ class Core {
         std::vector<std::string> readLib(const std::string &path);
         void run();
     private:
+        SoLoader<IGraphic>_graphic;
         // SoLoader<IGame>_game;
-        // SoLoader<IGraphic>_graphic;
         std::vector<std::string>_graphLibs;
         std::vector<std::string>_gameLibs;
+        int isValidLib(std::vector<std::string>, const std::string &);
 };
 
 #endif /* !CORE_HPP_ */
