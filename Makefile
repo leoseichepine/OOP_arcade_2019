@@ -9,7 +9,7 @@ CORE_MAIN					=	./src/main.cpp
 
 CORE_NAME					=	arcade
 
-CORE_SRC					=
+CORE_SRC					=	./src/Core.cpp
 
 CC							=	g++
 

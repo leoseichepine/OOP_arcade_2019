@@ -36,7 +36,7 @@ class IGraphic: public IGraphicRenderer {
     public:
         IGraphic() = default;
         virtual bool isOperational() = 0;
-        virtual IEventIterator &handleEvents() = 0;
+        virtual IEventIterator& handleEvents() = 0;
 };
 
 #endif /* !IGRAPHIC_HPP_ */

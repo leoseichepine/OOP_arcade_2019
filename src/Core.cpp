@@ -9,8 +9,10 @@
 
 Core::Core(int ac, char **av)
 {
-    _graphLibs = {"lib_arcade_sfml.so", "lib_arcade_ncurses.so", "lib_arcade_libcaca.so"};
-    _gameLibs = {"lib_arcade_nibbler.so", "lib_arcade_pacman.so"};
+    _graphLibs = readLib(GRAPHIC_PATH);
+    _gameLibs = readLib(GAME_PATH);
+    // for (auto it = _graphLibs.begin(); it != _graphLibs.end(); ++it)
+    //     std::cout << it->c_str() << std::endl;
 
     if (ac != 2)
         throw std::exception();
@@ -18,4 +20,19 @@ Core::Core(int ac, char **av)
 
 Core::~Core()
 {
+}
+
+std::vector<std::string> Core::readLib(const std::string &path) {
+
+    DIR* dirp = opendir(path.c_str());
+    struct dirent * dp;
+    std::vector<std::string> vec;
+    
+    while ((dp = readdir(dirp)) != NULL) {
+        std::string tmp = dp->d_name;
+        if (tmp.find(".so") != std::string::npos)
+            vec.push_back(tmp);
+    }
+    closedir(dirp);
+    return vec;
 }

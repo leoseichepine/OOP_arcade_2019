@@ -9,13 +9,16 @@
 #define CORE_HPP_
 
 #include <string>
-#include <array>
 #include "IGraphic.hpp"
 #include "IGame.hpp"
 #include "SoLoader.hpp"
+#include <sys/types.h>
+#include <dirent.h>
+#include <iostream>
+#include <vector>
 
-#define libPath "./lib/"
-#define gamePath "./game/"
+#define GRAPHIC_PATH "./lib/"
+#define GAME_PATH "./game/"
 
 class Core {
     public:
@@ -24,12 +27,13 @@ class Core {
 
         void useGraphic(const std::string &filename);
         void useGame(const std::string &filename);
+        std::vector<std::string> readLib(const std::string &path);
         void run();
     private:
         // SoLoader<IGame>_game;
         // SoLoader<IGraphic>_graphic;
-        std::array<std::string, 3>_graphLibs;
-        std::array<std::string, 2>_gameLibs;
+        std::vector<std::string>_graphLibs;
+        std::vector<std::string>_gameLibs;
 };
 
 #endif /* !CORE_HPP_ */
