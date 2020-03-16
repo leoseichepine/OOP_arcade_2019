@@ -13,7 +13,7 @@ CORE_SRC					=
 
 CC							=	g++
 
-CFLAGS						=	-Wall -Wextra
+CFLAGS						=	-Wall -Wextra -ldl
 
 OBJ							=	$(SRC:.cpp=.o)
 OBJ_MAIN					=	$(CORE_MAIN:.cpp=.o)

@@ -10,11 +10,8 @@
 
 int main(int ac, char **av)
 {
-    (void)ac;
-    (void)av;
     try {
-        std::cout << "ici!" << std::endl;
-        // Core arcade();
+        Core arcade(ac, av);
     } catch (std::exception()) {
         return 84;
     }

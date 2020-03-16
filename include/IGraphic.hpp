@@ -20,6 +20,7 @@ class IEventIterator
 class IGraphicRenderer
 {
     public:
+        IGraphicRenderer() = default;
         virtual void drawScreen() = 0;
         virtual void clearScreen() = 0;
         virtual void drawRect(Rect rect) = 0;
@@ -33,8 +34,9 @@ class IGraphicRenderer
 
 class IGraphic: public IGraphicRenderer {
     public:
+        IGraphic() = default;
         virtual bool isOperational() = 0;
-        virtual IEventIterator handleEvents() = 0;
+        virtual IEventIterator &handleEvents() = 0;
 };
 
 #endif /* !IGRAPHIC_HPP_ */

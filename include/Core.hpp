@@ -14,6 +14,9 @@
 #include "IGame.hpp"
 #include "SoLoader.hpp"
 
+#define libPath "./lib/"
+#define gamePath "./game/"
+
 class Core {
     public:
         explicit Core(int ac, char **av);
