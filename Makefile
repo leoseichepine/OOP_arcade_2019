@@ -5,31 +5,31 @@
 ## Makefile
 ##
 
-CORE_MAIN					=	./src/main.cpp
+CORE_MAIN						=	./src/main.cpp
 
-CORE_NAME					=	arcade
+CORE_NAME						=	arcade
 
-CORE_SRC					=	./src/Core.cpp			\
+CORE_SRC						=	./src/Core.cpp			\
 
-CC							=	g++
+CC								=	g++
 
-CFLAGS						=	-Wall -Wextra -ldl -g
+CXXFLAGS						=	-std=c++17 -Wall -Wextra -ldl -g
 
-SFML_FLAGS					=	-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+SFML_FLAGS						=	-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-OBJ							=	$(SRC:.cpp=.o)
-OBJ_MAIN					=	$(CORE_MAIN:.cpp=.o)
+OBJ								=	$(SRC:.cpp=.o)
+OBJ_MAIN						=	$(CORE_MAIN:.cpp=.o)
 
 $(NAME):	$(OBJ) $(OBJ_MAIN)
-			$(CC) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(CFLAGS)
+			$(CC) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(CXXFLAGS)
 
 all:		core
 
 core:
-			$(CC) -o $(CORE_NAME) $(CORE_SRC) $(CORE_MAIN) $(CFLAGS) $(SFML_FLAGS)
+			$(CC) -o $(CORE_NAME) $(CORE_SRC) $(CORE_MAIN) $(CXXFLAGS) $(SFML_FLAGS)
 
 debug:
-			$(CC) -o $(NAME) $(SRC) $(MAIN_FILE) $(CFLAGS) -g
+			$(CC) -o $(NAME) $(SRC) $(MAIN_FILE) $(CXXFLAGS) -g
 
 clean:
 			rm -f $(OBJ) $(OBJ_MAIN) $(LIB_NAME)

@@ -19,6 +19,7 @@ IGraphicSFML::~IGraphicSFML()
 
 extern "C" IGraphic *entry()
 {
+    std::cout << "IGraphicSFML entry" << std::endl;
     return new IGraphicSFML;
 }
 

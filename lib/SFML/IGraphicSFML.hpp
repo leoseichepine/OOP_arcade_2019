@@ -30,8 +30,6 @@ class IGraphicSFML: public IGraphic {
         virtual IEventIterator &handleEvents() override;
     protected:
     private:
-        sf::RenderWindow _win;
-        sf::Clock _clock;
 };
 
 #endif /* !SFML_HPP_ */

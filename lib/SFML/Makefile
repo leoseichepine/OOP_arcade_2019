@@ -11,7 +11,7 @@ SRC					=	IGraphicSFML.cpp		\
 
 CC					=	g++
 
-CXXFLAGS			=	-std=c++17 -I./ -fPIC -shared -ldl
+CXXFLAGS			=	-std=c++17 -I./../include -fPIC -shared -ldl
 
 OBJ					=	$(SRC:.cpp=.o)
 
