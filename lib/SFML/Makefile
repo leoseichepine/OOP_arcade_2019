@@ -5,33 +5,28 @@
 ## Makefile
 ##
 
-NAME			=	lib_arcade_sfml.so
+NAME				=	lib_arcade_sfml.so
 
-SRC				=	IGraphicSFML.cpp		\
+SRC					=	IGraphicSFML.cpp		\
 
-CC				=	g++
+CC					=	g++
 
-CFLAGS			=	-fpic -Wall -Wextra -g
+CXXFLAGS			=	-std=c++17 -I./ -fPIC -shared -ldl
 
-LDFLAGS			=	-shared
+OBJ					=	$(SRC:.cpp=.o)
 
-OBJ				=	$(SRC:.cpp=.o)
+all					: 	$(NAME)
 
-$(NAME)			: 	$(OBJ)
-					$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJ)
+$(NAME)				: 	$(OBJ)
+						$(CC) $(OBJ) $(CXXFLAGS) -o $(NAME)
 
-all				: 	$(NAME)
+clean				:
+						rm -f $(OBJ)
 
-debug			:
-					$(CC) $(CFLAGS) -o $(NAME) $(SRC)
+fclean				:
+						rm -f $(OBJ)
+						rm -f $(NAME)
 
-clean			:
-					rm -f $(OBJ)
+re					:	fclean all
 
-fclean			:
-					rm -f $(OBJ)
-					rm -f $(NAME) $(NAME_TEST)
-
-re				:	fclean all
-
-.PHONY			:	all clean fclean re debug
+.PHONY				:	all clean fclean re debug
