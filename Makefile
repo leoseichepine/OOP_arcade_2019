@@ -13,7 +13,7 @@ CORE_SRC						=	./src/Core.cpp			\
 
 CC								=	g++
 
-CXXFLAGS						=	-std=c++17 -Wall -Wextra -ldl -g
+CXXFLAGS						=	-std=c++17 -I./include/ -Wall -Wextra -ldl -g
 
 SFML_FLAGS						=	-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
@@ -29,13 +29,13 @@ core:
 			$(CC) -o $(CORE_NAME) $(CORE_SRC) $(CORE_MAIN) $(CXXFLAGS) $(SFML_FLAGS)
 
 debug:
-			$(CC) -o $(NAME) $(SRC) $(MAIN_FILE) $(CXXFLAGS) -g
+			$(CC) -o $(NAME) $(SRC) $(MAIN_FILE) $(CXXFLAGS)
 
 clean:
 			rm -f $(OBJ) $(OBJ_MAIN) $(LIB_NAME)
 
 fclean:
-			rm -f $(OBJ) $(OBJ_MAIN) $(LIB_NAME) $(NAME)
+			rm -f $(OBJ) $(OBJ_MAIN) $(LIB_NAME) $(CORE_NAME)
 
 re:			fclean all
 

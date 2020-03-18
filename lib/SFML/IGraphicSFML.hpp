@@ -13,6 +13,7 @@
 #include "SFML/Graphics.hpp"
 
 extern "C" IGraphic *entry();
+extern "C" void destroy(IGraphic *instance);
 
 class IGraphicSFML: public IGraphic {
     public:

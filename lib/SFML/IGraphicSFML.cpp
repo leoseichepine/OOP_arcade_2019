@@ -25,6 +25,7 @@ extern "C" IGraphic *entry()
 
 void IGraphicSFML::drawScreen()
 {
+    std::cout << "DRAW SCREEN" << std::endl;
 }
 
 void IGraphicSFML::clearScreen()

@@ -13,8 +13,6 @@ Core::Core(const std::string &path): _graphic(path) //, _game("./games/lib_arcad
     _gameLibs = readLib(GAME_PATH);
     // if (!isValidLib(_graphLibs, path))
     //     throw std::exception();
-    // _graphic = SoLoader<IGraphic>(path);
-    // _game = SoLoader<IGame>("");
 }
 
 Core::~Core()

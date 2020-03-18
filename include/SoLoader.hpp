@@ -26,10 +26,14 @@ class SoLoader {
             this->_instance = func();
         }
         ~SoLoader() {
-            if (this->_instance != nullptr)
+            if (this->_instance != nullptr) {
+                std::cout << "delete this instance" << std::endl;
                 delete this->_instance;
-            if (this->_lib != nullptr)
+            }
+            if (this->_lib != nullptr) {
+                std::cout << "dlclose call" << std::endl;
                 dlclose(this->_lib);
+            }
         }
         T *operator ->() {
             return (this->_instance);
