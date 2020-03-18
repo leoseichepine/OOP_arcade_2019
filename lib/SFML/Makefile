@@ -8,17 +8,20 @@
 NAME				=	lib_arcade_sfml.so
 
 SRC					=	IGraphicSFML.cpp		\
+						./../../src/Drawables.cpp
 
 CC					=	g++
 
-CXXFLAGS			=	-std=c++17 -I./../include -fPIC -shared -ldl
+CXXFLAGS			=	-std=c++17 -I./../../include -fPIC -shared -ldl
+
+SFML_FLAGS			=	-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 OBJ					=	$(SRC:.cpp=.o)
 
 all					: 	$(NAME)
 
 $(NAME)				: 	$(OBJ)
-						$(CC) $(OBJ) $(CXXFLAGS) -o $(NAME)
+						$(CC) $(OBJ) $(CXXFLAGS) $(SFML_FLAGS) -o $(NAME)
 
 clean				:
 						rm -f $(OBJ)

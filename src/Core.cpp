@@ -5,14 +5,22 @@
 ** Core
 */
 
-#include "./../include/Core.hpp"
+#include "Core.hpp"
 
 Core::Core(const std::string &path): _graphic(path) //, _game("./games/lib_arcade_nibbler.so")
 {
     _graphLibs = readLib(GRAPHIC_PATH);
     _gameLibs = readLib(GAME_PATH);
-    // if (!isValidLib(_graphLibs, path))
+    // if (!isValidLib(_graphLibs, path)) {
     //     throw std::exception();
+    // }
+    Rect rect(Vector2f(0,0), Vector2f(20, 20), Color(255, 0, 0, 100));
+    while (_graphic->isOperational()) {
+        _graphic->handleEvents();
+        _graphic->clearScreen();
+        _graphic->drawRect(rect);
+        _graphic->drawScreen();
+    }
 }
 
 Core::~Core()

@@ -13,7 +13,6 @@
 #include "SFML/Graphics.hpp"
 
 extern "C" IGraphic *entry();
-extern "C" void destroy(IGraphic *instance);
 
 class IGraphicSFML: public IGraphic {
     public:
@@ -31,6 +30,7 @@ class IGraphicSFML: public IGraphic {
         virtual IEventIterator &handleEvents() override;
     protected:
     private:
+        sf::RenderWindow _win;
 };
 
 #endif /* !SFML_HPP_ */

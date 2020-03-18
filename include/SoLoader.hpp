@@ -21,8 +21,9 @@ class SoLoader {
                 throw std::exception();
             }
             T *(*func)() = reinterpret_cast<T *(*)()>(dlsym(this->_lib, "entry"));
-            if (func == nullptr)
+            if (func == nullptr) {
                 throw std::exception();
+            }
             this->_instance = func();
         }
         ~SoLoader() {
