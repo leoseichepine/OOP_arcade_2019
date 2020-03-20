@@ -7,7 +7,7 @@
 
 #include "Nibbler.hpp"
 
-Nibbler::Nibbler(): _data({}), _snake({}), _speed(32), _score(0)
+Nibbler::Nibbler(): _data({}), _snake({}), _speed(32), _score(0), _elapsedTime(0)
 {
     std::cout << "Nibbler ctor" << std::endl;
     _data.insert(std::make_pair<std::string, std::string>("score", std::to_string(_score)));
@@ -48,7 +48,11 @@ void Nibbler::handleEvent(std::string &name)
 
 void Nibbler::handleUpdate(int elapsedTime)
 {
-    (void)elapsedTime;
+    if (elapsedTime + _elapsedTime >= 1000){
+        std::cout << "elapsedTime : " << elapsedTime << "s" << std::endl;
+        _elapsedTime = 0;
+    } else
+        _elapsedTime += elapsedTime;
 }
 
 void Nibbler::handleRender(IGraphicRenderer &renderer)

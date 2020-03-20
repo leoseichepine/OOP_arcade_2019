@@ -36,6 +36,7 @@ class Nibbler: public IGame {
         moveDir _dir;
         // Snake fct
         void addCase();
+        std::size_t _elapsedTime;
 };
 
 #endif /* !NIBBLER_HPP_ */

@@ -16,6 +16,8 @@
     #include <dirent.h>
     #include <iostream>
     #include <vector>
+    #include <ctime>
+    #include <chrono>
 
     #define GRAPHIC_PATH "./lib/"
     #define GAME_PATH "./games/"
@@ -34,5 +36,7 @@
             std::vector<std::string>_graphLibs;
             std::vector<std::string>_gameLibs;
             int isValidLib(std::vector<std::string>, const std::string &);
+            std::chrono::time_point<std::chrono::system_clock> _clock;
+
     };
 #endif /* !CORE_HPP_ */

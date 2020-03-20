@@ -11,12 +11,15 @@ Core::Core(const std::string &path): _graphic(path), _game("./games/Nibbler/lib_
 {
     _graphLibs = readLib(GRAPHIC_PATH);
     _gameLibs = readLib(GAME_PATH);
+    _clock = std::chrono::system_clock::now();
     // if (!isValidLib(_graphLibs, path)) {
     //     throw std::exception();
     // }
     while (_graphic->isOperational()) {
         _graphic->clearScreen();
         _graphic->handleEvents();
+        _game->handleUpdate(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - _clock).count());
+        _clock = std::chrono::system_clock::now();
         _game->handleRender(*_graphic.operator->());
         _graphic->drawScreen();
     }
