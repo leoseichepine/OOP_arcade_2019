@@ -29,11 +29,11 @@ extern "C" IGame *entry()
 void Nibbler::addCase()
 {
     Rect newRect;
-    newRect.setSize(Vector2f(32, 32));
+    newRect.setSize(Vector2f(_pixelSize, _pixelSize));
     newRect.setColor(Color(255, 0, 0, 255));
 
     if (_snake.empty()) {
-        newRect.setPosition(Vector2f(32, 32));
+        newRect.setPosition(Vector2f(_pixelSize, 0));
     } else {
         newRect.setPosition(Vector2f(_snake[_snake.size() - 1].getPositionX() - newRect.getSizeX(),
         _snake[_snake.size() - 1].getPositionY()));

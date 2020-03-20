@@ -31,6 +31,7 @@ class IGraphicSFML: public IGraphic {
     protected:
     private:
         sf::RenderWindow _win;
+        sf::Clock _clock;
 };
 
 #endif /* !SFML_HPP_ */

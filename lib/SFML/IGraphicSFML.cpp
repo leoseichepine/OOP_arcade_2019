@@ -7,7 +7,7 @@
 
 #include "IGraphicSFML.hpp"
 
-IGraphicSFML::IGraphicSFML(): _win(sf::VideoMode(1920, 1080, 32), std::string("SFML Window"), sf::Style::Close)
+IGraphicSFML::IGraphicSFML(): _win(sf::VideoMode(800, 600, 32), std::string("SFML Window"), sf::Style::Close), _clock()
 {
     std::cout << "IGraphicSFML ctor" << std::endl;
 }
