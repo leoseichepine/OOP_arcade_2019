@@ -7,7 +7,7 @@
 
 #include "IGraphicSFML.hpp"
 
-IGraphicSFML::IGraphicSFML(): _win(sf::VideoMode(800, 600, 32), std::string("SFML Window"), sf::Style::Close)
+IGraphicSFML::IGraphicSFML(): _win(sf::VideoMode(1920, 1080, 32), std::string("SFML Window"), sf::Style::Close)
 {
     std::cout << "IGraphicSFML ctor" << std::endl;
 }
@@ -69,7 +69,7 @@ void IGraphicSFML::drawSprite(Sprite sprite)
 void IGraphicSFML::drawText(Text text)
 {
     sf::Font font;
-    font.loadFromFile("./lib/fonts/testfont.ttf");
+    font.loadFromFile("./lib/fonts/font.ttf");
     unsigned int charSize = text.getSizeX(); // On mettra toujours la font size dans X
     sf::Vector2f pos(text.getPositionX(), text.getPositionY());
     sf::Color color(text.getColorRed(), text.getColorGreen(), text.getColorBlue(), text.getColorAlpha());

@@ -18,10 +18,12 @@ class SoLoader {
         {
             this->_lib = dlopen(filename.c_str(), RTLD_LAZY);
             if (this->_lib == nullptr) {
+                std::cerr << "Lib not found !" << std::endl;
                 throw std::exception();
             }
             T *(*func)() = reinterpret_cast<T *(*)()>(dlsym(this->_lib, "entry"));
             if (func == nullptr) {
+                std::cerr << "Entry point not found!" << std::endl;
                 throw std::exception();
             }
             this->_instance = func();

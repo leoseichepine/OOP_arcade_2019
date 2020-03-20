@@ -30,7 +30,7 @@
             std::vector<std::string> readLib(const std::string &path);
         private:
             SoLoader<IGraphic>_graphic;
-            // SoLoader<IGame>_game;
+            SoLoader<IGame>_game;
             std::vector<std::string>_graphLibs;
             std::vector<std::string>_gameLibs;
             int isValidLib(std::vector<std::string>, const std::string &);
