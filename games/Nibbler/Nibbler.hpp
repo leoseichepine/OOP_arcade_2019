@@ -38,6 +38,7 @@ class Nibbler: public IGame {
         Rect _food;
         // Snake fct
         void addCase();
+        void move();
         std::size_t _elapsedTime;
 };
 

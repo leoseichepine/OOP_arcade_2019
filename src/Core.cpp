@@ -15,13 +15,17 @@ Core::Core(const std::string &path): _graphic(path), _game("./games/Nibbler/lib_
     // if (!isValidLib(_graphLibs, path)) {
     //     throw std::exception();
     // }
+    std::chrono::time_point<std::chrono::system_clock> curr_time;
+    std::chrono::time_point<std::chrono::system_clock> last_time = std::chrono::system_clock::now();
     while (_graphic->isOperational()) {
+        curr_time = std::chrono::system_clock::now();
+        int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(curr_time - last_time).count();
         _graphic->clearScreen();
         _graphic->handleEvents();
-        _game->handleUpdate(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - _clock).count());
-        _clock = std::chrono::system_clock::now();
         _game->handleRender(*_graphic.operator->());
+        _game->handleUpdate(elapsed);
         _graphic->drawScreen();
+        last_time = curr_time;
     }
 }
 
