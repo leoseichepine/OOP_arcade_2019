@@ -31,15 +31,19 @@ class Nibbler: public IGame {
         std::map<std::string, std::string> _data;
         // Snake var
         std::vector<Rect>_snake;
+        Rect _food;
+        std::size_t _elapsedTime;
         int _pixelSize;
         int _speed;
         std::size_t _score;
         moveDir _dir;
-        Rect _food;
         // Snake fct
         void addCase();
         void move();
-        std::size_t _elapsedTime;
+        void createFood();
+        void handleCollision();
+        std::size_t generateRand(std::size_t max, std::size_t n);
+        bool isValidFoodPos(Vector2f pos);
 };
 
 #endif /* !NIBBLER_HPP_ */
