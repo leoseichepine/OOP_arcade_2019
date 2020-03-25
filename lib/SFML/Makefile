@@ -22,6 +22,7 @@ all					: 	$(NAME)
 
 $(NAME)				: 	$(OBJ)
 						$(CC) $(OBJ) $(CXXFLAGS) $(SFML_FLAGS) -o $(NAME)
+						mv $(NAME) ../
 
 clean				:
 						rm -f $(OBJ)

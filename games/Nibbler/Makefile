@@ -20,6 +20,7 @@ all					: 	$(NAME)
 
 $(NAME)				: 	$(OBJ)
 						$(CC) $(OBJ) $(CXXFLAGS) -o $(NAME)
+						mv $(NAME) ../
 
 clean				:
 						rm -f $(OBJ)

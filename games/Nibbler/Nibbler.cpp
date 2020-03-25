@@ -43,7 +43,14 @@ void Nibbler::addCase()
 
 void Nibbler::handleEvent(std::string &name)
 {
-    std::cout << "Handling event : " + name << std::endl;
+    if (name == "left" && _dir != RIGHT)
+        _dir = LEFT;
+    else if (name == "right" && _dir != LEFT)
+        _dir = RIGHT;
+    else if (name == "down" && _dir != UP)
+        _dir = DOWN;
+    else if (name == "up" && _dir != DOWN)
+        _dir = UP;
 }
 
 void Nibbler::move()
@@ -53,25 +60,20 @@ void Nibbler::move()
         for (std::size_t i = _snake.size() - 1; i > 0; --i)
             _snake[i].setPosition(Vector2f(_snake[i - 1].getPositionX(), _snake[i - 1].getPositionY()));
     }
-    if (_dir == RIGHT) {
-        std::cout << "RIGHT" << std::endl;
+    if (_dir == RIGHT)
         _snake[0].move(Vector2f(_speed * _pixelSize, 0));
-    } else if (_dir == LEFT) {
-        std::cout << "LEFT" << std::endl;
+    else if (_dir == LEFT)
         _snake[0].move(Vector2f(-_speed * _pixelSize, 0));
-    } else if (_dir == UP) {
-        std::cout << "UP" << std::endl;
+    else if (_dir == UP)
         _snake[0].move(Vector2f(0, -_speed * _pixelSize));
-    } else if (_dir == DOWN) {
-        std::cout << "DOWN" << std::endl;
+    else if (_dir == DOWN)
         _snake[0].move(Vector2f(0, _speed * _pixelSize));
-    }
 }
 
 void Nibbler::handleUpdate(int elapsedTime)
 {
     _elapsedTime += elapsedTime;
-    if (_elapsedTime >= 250)
+    if (_elapsedTime >= 16)
         move();
 }
 

@@ -10,13 +10,6 @@
 
 #include "Drawables.hpp"
 
-class IEventIterator
-{
-    public:
-        virtual bool hasNext() = 0;
-        virtual std::string &getNext() = 0;
-};
-
 class IGraphicRenderer
 {
     public:

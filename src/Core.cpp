@@ -7,21 +7,23 @@
 
 #include "Core.hpp"
 
-Core::Core(const std::string &path): _graphic(path), _game("./games/Nibbler/lib_arcade_nibbler.so")
+Core::Core(const std::string &path): _graphic(path), _game("./games/lib_arcade_nibbler.so")
 {
     _graphLibs = readLib(GRAPHIC_PATH);
     _gameLibs = readLib(GAME_PATH);
     _clock = std::chrono::system_clock::now();
-    // if (!isValidLib(_graphLibs, path)) {
-    //     throw std::exception();
-    // }
+
+    if (!isValidLib(_graphLibs, path))
+        throw std::exception();
+
     std::chrono::time_point<std::chrono::system_clock> curr_time;
     std::chrono::time_point<std::chrono::system_clock> last_time = std::chrono::system_clock::now();
     while (_graphic->isOperational()) {
         curr_time = std::chrono::system_clock::now();
         int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(curr_time - last_time).count();
         _graphic->clearScreen();
-        _graphic->handleEvents();
+        std::string ev(_graphic->handleEvent());
+        _game->handleEvent(ev);
         _game->handleRender(*_graphic.operator->());
         _game->handleUpdate(elapsed);
         _graphic->drawScreen();
@@ -35,9 +37,11 @@ Core::~Core()
 
 int Core::isValidLib(std::vector<std::string> libs, const std::string &path)
 {
+    std::string newPath = path.substr(path.find_last_of('/') + 1);
+
     for (auto it = libs.begin(); it != libs.end(); ++it) {
         std::string tmp = it->c_str();
-        if (path == tmp)
+        if (newPath == tmp)
             return 1;
     }
     return 0;
