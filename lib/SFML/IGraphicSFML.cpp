@@ -85,13 +85,40 @@ bool IGraphicSFML::isOperational()
     return (_win.isOpen() ? true : false);
 }
 
-IEventIterator &IGraphicSFML::handleEvents()
+std::string IGraphicSFML::handleEvent()
 {
     sf::Event e;
 
     while (_win.pollEvent(e)) {
         if (e.type == sf::Event::Closed
-        || (e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::Escape))
+        || (e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::Delete))
             _win.close();
+        if (e.type == sf::Event::KeyPressed) {
+            if (e.key.code == sf::Keyboard::E)
+                return "next_game";
+            if (e.key.code == sf::Keyboard::C)
+                return "prev_game";
+            if (e.key.code == sf::Keyboard::A)
+                return "next_graphic";
+            if (e.key.code == sf::Keyboard::W)
+                return "prev_graphic";
+            if (e.key.code == sf::Keyboard::Escape)
+                return "menu";
+            if (e.key.code == sf::Keyboard::R)
+                return "restart";
+            if (e.key.code == sf::Keyboard::Return)
+                return "enter";
+            if (e.key.code == sf::Keyboard::BackSpace)
+                return "space";
+            if (e.key.code == sf::Keyboard::Left || e.key.code == sf::Keyboard::Q)
+                return "left";
+            if (e.key.code == sf::Keyboard::Right || e.key.code == sf::Keyboard::D)
+                return "right";
+            if (e.key.code == sf::Keyboard::Up || e.key.code == sf::Keyboard::Z)
+                return "up";
+            if (e.key.code == sf::Keyboard::Down || e.key.code == sf::Keyboard::S)
+                return "down";
+        }
     }
+    return "";
 }

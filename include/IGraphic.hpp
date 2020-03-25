@@ -38,7 +38,7 @@ class IGraphic: public IGraphicRenderer {
         virtual ~IGraphic(){};
 
         virtual bool isOperational() = 0;
-        virtual IEventIterator& handleEvents() = 0;
+        virtual std::string handleEvent() = 0;
 };
 
 #endif /* !IGRAPHIC_HPP_ */

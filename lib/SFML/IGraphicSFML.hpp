@@ -27,7 +27,7 @@ class IGraphicSFML: public IGraphic {
         virtual void drawText(Text text) override;
 
         virtual bool isOperational() override;
-        virtual IEventIterator &handleEvents() override;
+        virtual std::string handleEvent() override;
     protected:
     private:
         sf::RenderWindow _win;

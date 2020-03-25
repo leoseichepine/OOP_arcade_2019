@@ -7,7 +7,7 @@
 
 #include "Nibbler.hpp"
 
-Nibbler::Nibbler(): _data({}), _snake({}), _speed(32), _score(0), _elapsedTime(0), _pixelSize(32)
+Nibbler::Nibbler(): _data({}), _snake({}), _speed(1), _score(0), _elapsedTime(0), _pixelSize(32)
 {
     std::cout << "Nibbler ctor" << std::endl;
     _data.insert(std::make_pair<std::string, std::string>("score", std::to_string(_score)));
@@ -55,26 +55,24 @@ void Nibbler::move()
     }
     if (_dir == RIGHT) {
         std::cout << "RIGHT" << std::endl;
-        _snake[0].move(Vector2f(_speed, 0));
+        _snake[0].move(Vector2f(_speed * _pixelSize, 0));
     } else if (_dir == LEFT) {
         std::cout << "LEFT" << std::endl;
-        _snake[0].move(Vector2f(-_speed, 0));
+        _snake[0].move(Vector2f(-_speed * _pixelSize, 0));
     } else if (_dir == UP) {
         std::cout << "UP" << std::endl;
-        _snake[0].move(Vector2f(0, -_speed));
+        _snake[0].move(Vector2f(0, -_speed * _pixelSize));
     } else if (_dir == DOWN) {
         std::cout << "DOWN" << std::endl;
-        _snake[0].move(Vector2f(0, _speed));
+        _snake[0].move(Vector2f(0, _speed * _pixelSize));
     }
 }
-
 
 void Nibbler::handleUpdate(int elapsedTime)
 {
     _elapsedTime += elapsedTime;
     if (_elapsedTime >= 250)
         move();
-    std::cout << _elapsedTime << " ms" << std::endl;
 }
 
 void Nibbler::handleRender(IGraphicRenderer &renderer)

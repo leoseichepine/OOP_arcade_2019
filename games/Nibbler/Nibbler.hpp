@@ -29,10 +29,10 @@ class Nibbler: public IGame {
     private:
         // GameData
         std::map<std::string, std::string> _data;
-        std::size_t _pixelSize;
         // Snake var
         std::vector<Rect>_snake;
-        std::size_t _speed;
+        int _pixelSize;
+        int _speed;
         std::size_t _score;
         moveDir _dir;
         Rect _food;
