@@ -17,6 +17,7 @@ int main(int ac, char **av)
     std::string path = av[1];
     try {
         Core arcade(path);
+        arcade.run();
     } catch (std::exception()) {
         return 84;
     }

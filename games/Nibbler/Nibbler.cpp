@@ -41,8 +41,9 @@ void Nibbler::handleEvent(std::string &name)
 
 void Nibbler::handleUpdate(int elapsedTime)
 {
+    std::cout << elapsedTime << std::endl;
     _elapsedTime += elapsedTime;
-    if (_elapsedTime >= 16)
+    if (_elapsedTime >= 250)
         move();
 }
 

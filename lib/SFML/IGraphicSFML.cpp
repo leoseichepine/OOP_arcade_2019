@@ -9,6 +9,7 @@
 
 IGraphicSFML::IGraphicSFML(): _win(sf::VideoMode(800, 600, 32), std::string("SFML Window"), sf::Style::Close), _clock()
 {
+    _win.setFramerateLimit(144);
     std::cout << "IGraphicSFML ctor" << std::endl;
 }
 

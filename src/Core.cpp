@@ -32,20 +32,19 @@ void Core::useGame(const std::string &filename)
 
 void Core::run()
 {
-    std::chrono::time_point<std::chrono::system_clock> last_time = std::chrono::system_clock::now();
-    std::chrono::time_point<std::chrono::system_clock> curr_time;
+    std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+
 
     while (_graphic->isOperational()) {
-        curr_time = std::chrono::system_clock::now();
-        int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(curr_time - last_time).count();
+        auto delta = std::chrono::system_clock::now() - start;
+        start = std::chrono::system_clock::now();
         _graphic->clearScreen();
         std::string ev(_graphic->handleEvent());
         _game->handleEvent(ev);
         _game->handleRender(*_graphic.operator->());
-        _game->handleUpdate(elapsed);
+        _game->handleUpdate(std::chrono::duration_cast<std::chrono::milliseconds>(delta).count());
         _gameData = _game->getGameData();
         _graphic->drawScreen();
-        last_time = curr_time;
     }
 }
 
