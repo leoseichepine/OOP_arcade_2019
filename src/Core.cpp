@@ -11,13 +11,30 @@ Core::Core(const std::string &path): _graphic(path), _game("./games/lib_arcade_n
 {
     _graphLibs = readLib(GRAPHIC_PATH);
     _gameLibs = readLib(GAME_PATH);
-    _clock = std::chrono::system_clock::now();
 
     if (!isValidLib(_graphLibs, path))
         throw std::exception();
+}
 
-    std::chrono::time_point<std::chrono::system_clock> curr_time;
+Core::~Core()
+{
+}
+
+void Core::useGraphic(const std::string &filename)
+{
+    _graphic = SoLoader<IGraphic>(filename);
+}
+
+void Core::useGame(const std::string &filename)
+{
+    _game = SoLoader<IGame>(filename);
+}
+
+void Core::run()
+{
     std::chrono::time_point<std::chrono::system_clock> last_time = std::chrono::system_clock::now();
+    std::chrono::time_point<std::chrono::system_clock> curr_time;
+
     while (_graphic->isOperational()) {
         curr_time = std::chrono::system_clock::now();
         int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(curr_time - last_time).count();
@@ -26,13 +43,10 @@ Core::Core(const std::string &path): _graphic(path), _game("./games/lib_arcade_n
         _game->handleEvent(ev);
         _game->handleRender(*_graphic.operator->());
         _game->handleUpdate(elapsed);
+        _gameData = _game->getGameData();
         _graphic->drawScreen();
         last_time = curr_time;
     }
-}
-
-Core::~Core()
-{
 }
 
 int Core::isValidLib(std::vector<std::string> libs, const std::string &path)

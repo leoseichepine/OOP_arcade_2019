@@ -29,14 +29,15 @@
 
             void useGraphic(const std::string &filename);
             void useGame(const std::string &filename);
-            std::vector<std::string> readLib(const std::string &path);
+            void run();
         private:
             SoLoader<IGraphic>_graphic;
             SoLoader<IGame>_game;
             std::vector<std::string>_graphLibs;
             std::vector<std::string>_gameLibs;
-            int isValidLib(std::vector<std::string>, const std::string &);
-            std::chrono::time_point<std::chrono::system_clock> _clock;
+            std::map<std::string, std::string> _gameData;
 
+            std::vector<std::string> readLib(const std::string &path);
+            int isValidLib(std::vector<std::string>, const std::string &);
     };
 #endif /* !CORE_HPP_ */

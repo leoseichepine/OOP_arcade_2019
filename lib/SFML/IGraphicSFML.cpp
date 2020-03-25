@@ -85,6 +85,27 @@ bool IGraphicSFML::isOperational()
     return (_win.isOpen() ? true : false);
 }
 
+std::string keyEvents(sf::Event e)
+{
+    std::vector<sf::Keyboard::Key> keys =
+    {sf::Keyboard::E, sf::Keyboard::C, sf::Keyboard::A, sf::Keyboard::W
+    ,sf::Keyboard::Escape, sf::Keyboard::R, sf::Keyboard::Return, sf::Keyboard::BackSpace
+    ,sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::Down
+    ,sf::Keyboard::Q, sf::Keyboard::D, sf::Keyboard::Z, sf::Keyboard::S};
+
+    std::vector<std::string> evStr =
+    {"next_game", "prev_game", "next_graphic", "prev_graphic"
+    ,"menu", "restart", "enter", "space"
+    ,"left", "right", "up", "down"
+    ,"left", "right", "up", "down"};
+
+    for (std::size_t i = 0; i < keys.size(); ++i) {
+        if (e.key.code == keys[i])
+            return evStr[i];
+    }
+    return "";
+}
+
 std::string IGraphicSFML::handleEvent()
 {
     sf::Event e;
@@ -93,32 +114,8 @@ std::string IGraphicSFML::handleEvent()
         if (e.type == sf::Event::Closed
         || (e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::Delete))
             _win.close();
-        if (e.type == sf::Event::KeyPressed) {
-            if (e.key.code == sf::Keyboard::E)
-                return "next_game";
-            if (e.key.code == sf::Keyboard::C)
-                return "prev_game";
-            if (e.key.code == sf::Keyboard::A)
-                return "next_graphic";
-            if (e.key.code == sf::Keyboard::W)
-                return "prev_graphic";
-            if (e.key.code == sf::Keyboard::Escape)
-                return "menu";
-            if (e.key.code == sf::Keyboard::R)
-                return "restart";
-            if (e.key.code == sf::Keyboard::Return)
-                return "enter";
-            if (e.key.code == sf::Keyboard::BackSpace)
-                return "space";
-            if (e.key.code == sf::Keyboard::Left || e.key.code == sf::Keyboard::Q)
-                return "left";
-            if (e.key.code == sf::Keyboard::Right || e.key.code == sf::Keyboard::D)
-                return "right";
-            if (e.key.code == sf::Keyboard::Up || e.key.code == sf::Keyboard::Z)
-                return "up";
-            if (e.key.code == sf::Keyboard::Down || e.key.code == sf::Keyboard::S)
-                return "down";
-        }
+        if (e.type == sf::Event::KeyPressed)
+            return keyEvents(e);
     }
     return "";
 }
